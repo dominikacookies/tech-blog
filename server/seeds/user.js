@@ -12,7 +12,7 @@
     "last_name": "Bar"
   },
   {
-    "username": "user4",
+    "username": "user3",
     "password": "password789",
     "first_name": "Fred",
     "last_name": "Foo"
