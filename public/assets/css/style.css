@@ -1,0 +1,108 @@
+html {
+  font-size:10px;
+}
+
+:root {
+  --dark: #002728;
+  --light: #f6f5ec;
+}
+
+body {
+  color: var(--dark)
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.header {
+  font-family: 'PT Sans Narrow', sans-serif;
+  letter-spacing: 0.15rem;
+  background-color: var(--dark);
+  opacity: 0.98.5;
+  color: var(--light);
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* z-index: 5;
+  position: fixed; */
+  width: 100vw;
+}
+
+.header nav {
+  margin-right: 50px;
+  float: right;
+  font-size: 1.8rem;
+  align-content: center;
+}
+
+.header nav li {
+  display: inline-block;
+  margin-left: 3.5rem;
+}
+
+.header a {
+  color: var(--light);
+}
+
+.homepage-heading {
+  padding-bottom: 2rem;
+}
+
+.primary-button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: var(--dark);
+  background-color: var(--light);
+}
+
+main {
+  background-color: #efeadc;
+  text-align: center;
+  color: var(--dark);
+  padding-top: 10rem;
+  /* padding-left: 10rem; 
+  padding-right: 10rem; */
+  min-height: 100vh;
+}
+
+.all-posts-container{
+  background-color: #f6f5ec;
+}
+
+.latest-post-container {
+  margin: auto;
+  padding: 1rem;
+}
+
+.latest-post-image {
+  height: 40rem;
+  object-fit: cover;
+}
+
+.latest-post-title {
+  font-size: 2.3rem
+}
+
+.post-card {
+  background-color: #efeadc;
+  width: 55rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.post-summary {
+  padding-top: 1rem;
+}
+
+.post-card-title {
+  font-size: 2rem;
+}
+
+.post-image {
+  height: 15rem;
+  object-fit: cover;
+}
