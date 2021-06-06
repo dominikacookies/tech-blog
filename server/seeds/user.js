@@ -1,3 +1,4 @@
+const users = 
 [
   {
     "username": "user1",
@@ -18,3 +19,6 @@
     "last_name": "Foo"
   }
 ]
+
+module.exports = users
+

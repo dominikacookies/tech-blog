@@ -8,6 +8,7 @@ const comments = require("./comment");
 
 const seed = async () => {
   await sequelize.sync({force:true});
+  console.info("all models were synced successfully")
 
   await User.bulkCreate(users);
   console.info("seeded users");

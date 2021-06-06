@@ -1,3 +1,4 @@
+const posts = 
 [
   {
     "title" : "Blog post 1",
@@ -20,3 +21,5 @@
     "user_id" : "3",
   }
 ]
+
+module.exports = posts

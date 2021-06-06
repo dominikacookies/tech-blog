@@ -1,3 +1,4 @@
+const comments = 
 [
   {
     "message" : "Great post",
@@ -25,3 +26,5 @@
     "post_id" : "4"
   },
 ]
+
+module.exports = comments
