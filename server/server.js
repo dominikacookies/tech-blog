@@ -13,7 +13,17 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+const sessionOptions = {
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+}
+
 app.use(cors());
+app.use(session(sessionOptions))
 app.use(express.json({extended:true}));
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
