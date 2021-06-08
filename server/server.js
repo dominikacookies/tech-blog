@@ -22,10 +22,16 @@ const sessionOptions = {
   }),
 }
 
+const hbs = handlebars.create()
+
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars")
+
 app.use(cors());
 app.use(session(sessionOptions))
 app.use(express.json({extended:true}));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../", "public")))''
 app.use(routes);
 
 const init = async () => {
