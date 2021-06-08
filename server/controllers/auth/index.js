@@ -1,7 +1,7 @@
 //remove later
 const bcrypt = require("bcrypt");
 
-const { User } = require("../models")
+const { User } = require("../../models")
 
 const signup = async (req, res) => {
   try {
