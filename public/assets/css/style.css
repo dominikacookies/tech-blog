@@ -3,7 +3,7 @@ html {
 }
 
 :root {
-  --dark: #002728;
+  --dark: #011f20;
   --light: #f6f5ec;
 }
 
@@ -16,10 +16,9 @@ a {
 }
 
 .header {
-  font-family: 'PT Sans Narrow', sans-serif;
   letter-spacing: 0.15rem;
   background-color: var(--dark);
-  opacity: 0.98.5;
+  /* opacity: 0.9; */
   color: var(--light);
   padding: 2.5rem;
   display: flex;
@@ -28,6 +27,7 @@ a {
   /* z-index: 5;
   position: fixed; */
   width: 100vw;
+  max-height: 10vh;
 }
 
 .header nav {
@@ -35,6 +35,12 @@ a {
   float: right;
   font-size: 1.8rem;
   align-content: center;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bolder;
+  font-style: italic
 }
 
 .header nav li {
@@ -47,16 +53,16 @@ a {
 }
 
 .homepage-heading {
-  padding-bottom: 2rem;
+  padding: 3rem;
 }
 
 .primary-button {
+  color: var(--dark) !important;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  color: var(--dark);
-  background-color: var(--light);
+  background-color: #efeadc;
 }
 
 main {
@@ -69,8 +75,16 @@ main {
   min-height: 100vh;
 }
 
+.blog-title {
+  font-size: 4.5rem;
+}
+
+.blog-description {
+  font-size: 2.2rem;
+}
+
 .all-posts-container{
-  background-color: #f6f5ec;
+  background-color: #f1f0e7;
 }
 
 .latest-post-container {
@@ -81,6 +95,7 @@ main {
 .latest-post-image {
   height: 40rem;
   object-fit: cover;
+  box-shadow: #e9e3d5 3px 5px 3px;
 }
 
 .latest-post-title {
@@ -88,10 +103,15 @@ main {
 }
 
 .post-card {
-  background-color: #efeadc;
+  /* background-color: #efeadc; */
   width: 55rem;
-  margin: 1rem;
+  margin: 3rem;
   padding: 1rem;
+  box-shadow: #e9e3d5 3px 5px 3px;
+  border-top-style: dashed;
+  border-left-style: dashed;
+  border-width: 0.3rem;
+  border-color: #efeadc;
 }
 
 .post-summary {
