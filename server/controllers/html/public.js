@@ -1,7 +1,11 @@
 const {Post} = require("../../models")
 
 const renderHomePage = async (req,res) => {
-  res.render("home")
+  const posts = await Post.findAll({
+    order: [ [ 'createdAt', 'DESC' ]],
+    limit: 2,
+    raw: true,
+    nested: true}) 
   console.log("homepage")
 }
 
