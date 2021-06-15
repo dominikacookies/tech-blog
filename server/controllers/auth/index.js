@@ -5,15 +5,15 @@ const { User } = require("../../models")
 
 const signup = async (req, res) => {
   try {
-    const {username, password, firstName : first_name, lastName : last_name} = req.body
+    const {username, password, firstName, lastName} = req.body
 
-    if (username && password && first_name && last_name) {
+    if (username && password && firstName && lastName) {
 
       await User.create({
         username,
         password,
-        first_name,
-        last_name
+        first_name : firstName,
+        last_name: lastName
       })
 
       return res.status(200).json({
@@ -45,8 +45,6 @@ const login = async (req, res) => {
     }
     
     const userData = await User.findOne({where : { username }})
-    // why does this not work?
-    // user.get({ plain: true })
 
     if (!userData) {
       return res.status(404).json({
@@ -54,7 +52,10 @@ const login = async (req, res) => {
       })
     }
 
-    const {dataValues : user} = data
+    // why does this not work?
+    const user = userData.get({ plain: true })
+
+    // const {dataValues : useree} = data
   
     // when trying to do this via model method it says that it doesn't exist
     const matchResult = await bcrypt.compare(password, user.password);
@@ -87,11 +88,12 @@ const login = async (req, res) => {
 
 
 const logout = async (req, res) => {
-  console.log(req.session)
-
   delete req.session.loggedIn
   delete req.session.user
-  console.log(req.session)
+  
+  res.status(200).json({
+    message: "Logout successful"
+  })
 }
 
 module.exports = {
