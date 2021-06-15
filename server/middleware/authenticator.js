@@ -1,5 +1,6 @@
 const authenticator = (req, res, next) => {
-  if (req.session.LoggedIn) {
+  console.log(req.session.loggedIn)
+  if (req.session.loggedIn) {
     next();
   } else {
     res.redirect("/login")
