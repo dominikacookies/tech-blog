@@ -1,0 +1,9 @@
+<h1>DASHBOARD</h1>
+<h2>Hello {{ firstName }} </h2>
+<div>
+  <ul class="d-flex flex-wrap justify-content-between">
+    {{#each userPosts as |post| }}
+      {{> my-post-card}}
+    {{/each }}
+  </ul>
+</div>

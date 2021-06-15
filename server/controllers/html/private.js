@@ -1,5 +1,17 @@
-const renderDashboard = () => {
-  console.log("Dashboard")
+const { Post } = require("../../models")
+
+const renderDashboard = async (req, res) => {
+  const {firstName, id} = req.session.user
+
+  const userPosts = await Post.findAll({
+    where: {
+      user_id: id
+    },
+    raw: true,
+    nested: true
+  })
+
+  res.render("dashboard", {firstName, userPosts})
 }
 
 const renderEditPostPage = (req, res) => {
