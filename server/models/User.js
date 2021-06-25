@@ -24,6 +24,9 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      len: [2, 20]
+    },
   },
   password: {
     type: DataTypes.STRING,
