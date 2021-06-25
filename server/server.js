@@ -9,7 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
 const routes = require("./routes");
 
-const PORT = process.env.PORT || 3301;
+const PORT = process.env.DB_PORT || 3301;
 
 const app = express();
 
