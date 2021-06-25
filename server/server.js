@@ -9,7 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
 const routes = require("./routes");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3301;
 
 const app = express();
 
@@ -42,6 +42,7 @@ const init = async () => {
     );
   } catch (error) {
     console.error("Couldn't connect to database.")
+    console.log(error)
   }
 };
 
