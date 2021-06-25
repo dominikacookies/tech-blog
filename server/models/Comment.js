@@ -18,7 +18,7 @@ const schema = {
     autoIncrement: true,
   },
   message: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   user_id: {
@@ -27,7 +27,6 @@ const schema = {
       model: "user",
       key: "id"
     },
-    onDelete: "CASCADE"
   },
   post_id: {
     type: DataTypes.INTEGER,
@@ -35,7 +34,6 @@ const schema = {
       model: "post",
       key: "id"
     },
-    onDelete: "CASCADE"
   }
 };
 
