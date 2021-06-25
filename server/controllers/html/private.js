@@ -1,4 +1,4 @@
-const { Post } = require("../../models")
+const { Post, User, Comment } = require("../../models")
 
 const renderDashboard = async (req, res) => {
   const {firstName, id} = req.session.user
@@ -18,8 +18,30 @@ const renderEditPostPage = (req, res) => {
   console.log("Edit post")
 }
 
-const renderPostPage = (req, res) => {
-  console.log("Post")
+const renderPostPage = async (req, res) => {
+  const postData = await Post.findOne({
+    where: {
+      id: req.params
+    },
+    include: [
+      {
+        model: Comment,
+        include: [
+          {
+            model: User,
+            attributes: ["username"]
+          }
+        ]
+      },
+      {
+        model: User,
+        attributes: ["username"]
+      }
+    ],
+  })
+
+  const post = postData.get({plain:true})
+  console.log(post)
 }
 
 const updatePost = async (req, res) => {
