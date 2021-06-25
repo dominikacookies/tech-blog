@@ -1,12 +1,21 @@
-const {Post} = require("../../models")
+const {Post, User} = require("../../models")
 
 const renderHomePage = async (req,res) => {
-  const posts = await Post.findAll({
+  const loggedIn = req.session.loggedIn
+
+  const postsData = await Post.findAll({
     order: [ [ 'createdAt', 'DESC' ]],
-    limit: 2,
-    raw: true,
-    nested: true}) 
-  console.log("homepage")
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  }) 
+
+  const posts = postsData.map((post)=> post.get({ plain:true }));
+
+  res.render("home", {posts, loggedIn})
 }
 
 const renderSignupPage = async (req,res) => {
@@ -16,7 +25,6 @@ const renderSignupPage = async (req,res) => {
 
 const renderLoginPage = async (req,res) => {
   res.render("login")
-  console.log("login")
 }
 
 module.exports = {
