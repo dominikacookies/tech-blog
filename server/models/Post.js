@@ -20,9 +20,12 @@ const schema = {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      len: [2, 50],
+    },
   },
   body: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   image_url: {
@@ -35,7 +38,6 @@ const schema = {
       model: "user",
       key: "id"
     },
-    onDelete: "CASCADE"
   }
 };
 
