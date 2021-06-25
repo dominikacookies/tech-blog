@@ -21,7 +21,7 @@ const renderEditPostPage = (req, res) => {
 const renderPostPage = async (req, res) => {
   const postData = await Post.findOne({
     where: {
-      id: req.params
+      id: req.params.id
     },
     include: [
       {
