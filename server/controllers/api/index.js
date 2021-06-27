@@ -97,7 +97,7 @@ const deletePost = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error: "Cannot create post at this time."
+      error: "Cannot delete post at this time."
     })
   }
 
@@ -174,7 +174,27 @@ const updateComment = async (req, res) => {
 }
 
 const deleteComment = async (req, res) => {
-  console.log("updating")
+  try {
+    const {id} = req.params
+
+    const deleteResult = await Comment.destroy({
+      where: { id }
+    });
+  
+    if (!deleteResult) {
+      return res.status(404).json({
+        error: "Comment doesn't exist"
+      })
+    };
+  
+    return res.status(200).json({
+      message: "The comment has been successfully deleted",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Cannot delete comment at this time."
+    })
+  }
 }
 
 module.exports = {
