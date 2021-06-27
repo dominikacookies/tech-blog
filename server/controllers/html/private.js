@@ -14,19 +14,6 @@ const renderDashboard = async (req, res) => {
   res.render("dashboard", {firstName, userPosts})
 }
 
-const renderEditPostPage = async (req, res) => {
-  const post = await Post.findOne({
-    where: {
-      id: req.params.id
-    },
-    raw: true,
-    nested: true
-  })
-
-  res.render("edit-post", {post})
-  console.log("Edit post")
-}
-
 const renderPostPage = async (req, res) => {
   const postData = await Post.findOne({
     where: {
@@ -68,18 +55,26 @@ const renderPostPage = async (req, res) => {
   res.render("post", {post})
 }
 
-const updatePost = async (req, res) => {
-  console.log("update")
+const renderEditPostPage = async (req, res) => {
+  const post = await Post.findOne({
+    where: {
+      id: req.params.id
+    },
+    raw: true,
+    nested: true
+  })
+
+  res.render("edit-post", {post})
+  console.log("Edit post")
 }
 
-const deletePost = async (req, res) => {
-  console.log("delete")
+const renderNewPostPage = async (req, res) => {
+  res.render("new-post")
 }
 
 module.exports = {
   renderDashboard,
   renderEditPostPage,
   renderPostPage,
-  updatePost,
-  deletePost
+  renderNewPostPage
 }
