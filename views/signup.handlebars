@@ -1,1 +1,64 @@
 {{> public-nav }}
+
+<main>
+  <section class="login-form-container mx-auto">
+    <div class="text-center mb-4">
+      <h2 class="mb-3">Join the tech gang!</h2>
+      <h3>We're excited to have you on board.</h3>
+    </div>
+    <form>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Username"
+        />
+      </div>
+      <div class="mb-3 ">
+        <input
+          type="text"
+          class="form-control"
+          id="first-name"
+          placeholder="First name"
+        />
+      </div>
+      <div class="mb-3 ">
+        <input
+          type="text"
+          class="form-control"
+          id="last-name"
+          placeholder="Last name"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="confirm-password"
+          placeholder="Confirm password"
+        />
+      </div>
+      <div id="signup-error-messages"></div>
+      <div class="signup-buttons-container">
+        <div class="mb-3 d-grid gap-2">
+          <button
+            type="submit"
+            class="login-button btn btn-primary mb-3 p-1"
+            id="signup-submit"
+          >
+            Signup
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
