@@ -12,9 +12,16 @@
     </article>
     <article class="col-md-3 col-xs-12">
       <h4>Comments</h4>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="add-comment-textarea"></textarea>
+        <label for="add-comment-textarea">Share your thoughts here. </label>
+        <div>
+          <button class="btn btn-primary" id="post-comment" data-postid={{post.id}} >Post</button>
+        </div>
+      </div>
       <div>
         {{#each post.comments as |comment|}}
-          <div class="card mt-2" style="width: 100%">
+          <div class="card mt-2 card-elements" style="width: 100%">
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">{{comment.user.username}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{comment.createdAt}}</h6>
