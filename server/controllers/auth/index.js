@@ -9,6 +9,18 @@ const signup = async (req, res) => {
 
     if (username && password && firstName && lastName) {
 
+      const isUsernameTaken = await User.findOne({
+        where: {
+          username
+        }
+      })
+
+      if (isUsernameTaken) {
+        return res.status(409).json({
+          error: "Username already exists"
+        })
+      }
+
       await User.create({
         username,
         password,
@@ -26,7 +38,6 @@ const signup = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error)
     return res.status(500).json({
       error: "Failed to create user"
     })
@@ -52,19 +63,17 @@ const login = async (req, res) => {
       })
     }
 
-    // why does this not work?
     const user = userData.get({ plain: true })
 
-    // const {dataValues : useree} = data
   
     // when trying to do this via model method it says that it doesn't exist
-    // const matchResult = await bcrypt.compare(password, user.password);
+    const matchResult = await bcrypt.compare(password, user.password);
 
-    // if (!matchResult) {
-    //   return res.status(404).json({
-    //     error: "Password invalid."
-    //   })
-    // }
+    if (!matchResult) {
+      return res.status(404).json({
+        error: "Password invalid."
+      })
+    }
 
     req.session.user = {
       id: user.id,
