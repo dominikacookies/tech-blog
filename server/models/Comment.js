@@ -27,7 +27,9 @@ const schema = {
       model: "user",
       key: "id"
     },
-    allowNull: false
+    allowNull: false,
+    onDelete: "cascade",
+    onUpdate: "cascade"
   },
   post_id: {
     type: DataTypes.INTEGER,
@@ -35,7 +37,9 @@ const schema = {
       model: "post",
       key: "id"
     },
-    allowNull: false
+    allowNull: false,
+    onDelete: "cascade",
+    onUpdate: "cascade"
   }
 };
 

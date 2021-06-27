@@ -38,6 +38,8 @@ const schema = {
       model: "user",
       key: "id"
     },
+    onDelete: "cascade",
+    onUpdate: "cascade"
   }
 };
 
