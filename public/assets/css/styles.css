@@ -17,14 +17,15 @@ main {
   background-color: rgb(1, 121, 121);
   color: white;
   border-width: 1px;
-  border-color: #dbf0f0;
+  border-color: rgb(1, 121, 121);
   margin-bottom: 4px;
+  padding: 7px
 }
 
 .btn-primary:hover {
   background-color: rgb(9, 129, 129);
-  padding: 8px;
-  border: none;
+  padding: 6px;
+  border-color: rgb(1, 121, 121);
 }
 
 .btn-secondary {
@@ -33,16 +34,30 @@ main {
   border-width: 1px;
   border-color: rgb(1, 121, 121);
   margin-bottom: 4px;
+  padding: 7px;
 }
 
-.btn-primary:hover {
+.btn-secondary:hover {
   background-color: rgb(9, 129, 129);
-  padding: 8px;
+  padding: 6px;
   border: none;
 }
 
+.large-button {
+  font-size: 18px;
+  padding: 7px
+}
+
+.large-button:hover {
+  padding: 6px
+}
+
 .error-message {
-  color: rgb(194, 11, 47)
+  color: rgb(194, 11, 47);
+}
+
+.grey-text {
+  color: rgb(104, 104, 104);
 }
 
 /* login page */
@@ -69,7 +84,6 @@ main {
   height: 150px
 }
 
-/* post page */
 #post-title {
   height: 13vh
 }
@@ -80,4 +94,15 @@ main {
 
 #post-content {
   height: 50vh
+}
+
+.border {
+  border-color:rgb(1, 121, 121);
+  border-width: 2px;
+}
+
+/* dashboard */
+
+#new-post-btn {
+  margin: auto;
 }
