@@ -1,15 +1,28 @@
 
 {{> private-nav}}
 
-<main>
-  <div class="form-floating">
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">{{post.title}}</textarea>
-    <label for="floatingTextarea">Title</label>
+<main class="mb-30">
+  <div class="text-center p-5">
+    <h1>Edit your post </h1>
   </div>
-  <img src={{post.image_url}}></img>
-  <input placeholder="Add a link to your post image here"> </input>
-  <div class="form-floating">
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">{{post.body}}</textarea>
-    <label for="floatingTextarea">Content </label>
+  <div class="form-floating m-2">
+    <textarea class="form-control" id="post-title">{{post.title}}</textarea>
+    <label for="post-title">Title</label>
+  </div>
+  <img src={{post.image_url}} class="m-2 post-image"></img>
+  <div class="p-2">
+    <input placeholder="Link to new image" id="post-image-url"> </input>
+  </div>
+  <div class="form-floating p-2">
+    <textarea class="form-control" placeholder="Leave a comment here" id="post-content">{{post.body}}</textarea>
+    <label for="post-content">Content </label>
+  </div>
+  <div class="p-2">
+    <button id="update-post" class="btn btn-primary" data-postid={{post.id}}>
+      Update now
+    </button>
+    <a href="/dashboard" class="btn btn-secondary">
+      Cancel
+    </a>
   </div>
 </main>
