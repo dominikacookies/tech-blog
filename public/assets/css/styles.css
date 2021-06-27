@@ -1,19 +1,65 @@
+body {
+  background-image: linear-gradient(to bottom, #f4fafa, #eef8f8, #e8f5f5, #e1f3f3, #dbf0f0);
+  min-height: 100vh
+}
+
 main {
   margin-right: 30px;
   margin-left: 30px;
+}
+
+.centre-content {
+  margin: auto;
+  width: 90%;
 }
 
 .btn-primary {
   background-color: rgb(1, 121, 121);
   color: white;
   border-width: 1px;
-  border-color: rgb(1, 88, 88);
+  border-color: #dbf0f0;
+  margin-bottom: 4px;
 }
+
+.btn-primary:hover {
+  background-color: rgb(9, 129, 129);
+  padding: 8px;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: rgb(1, 121, 121);
+  border-width: 1px;
+  border-color: rgb(1, 121, 121);
+  margin-bottom: 4px;
+}
+
+.btn-primary:hover {
+  background-color: rgb(9, 129, 129);
+  padding: 8px;
+  border: none;
+}
+
+.error-message {
+  color: rgb(194, 11, 47)
+}
+
+/* login page */
 
 .login-form-container {
   width: 70vw;
 }
 
-.error-message {
-  color: rgb(194, 11, 47)
+/* post cards page */
+
+.post-card {
+  background-color: #F9FCFC;
+  padding-top: 2px;
+  border: none
+}
+
+/* post page */
+.post-image {
+  max-height: 35vh
 }

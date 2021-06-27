@@ -1,24 +1,35 @@
 
 {{> private-nav}}
 
-<main>
+<main class="centre-content">
+  <section>
   <h1>{{post.title}}</h1>
   <p>By: {{post.user.username}} published: {{post.createdAt}} </p>
-  <img src={{post.image_url}}></img>
-  <div>{{post.body}}</div>
-  <h3>Comments</h3>
-  {{#each post.comments as |comment|}}
-    {{#if comment.belongsToUser}}
-    <div> {{comment.user.username}} </div>
-    <div> {{comment.createdAt}} </div>
-    <div> {{comment.message}} </div>
-    <div> "edit" </div>
-    <div> "delete" </div>
-    {{else}}
-      <div> {{comment.user.username}} </div>
-      <div> {{comment.createdAt}} </div>
-      <div> {{comment.message}} </div>
-    {{/if}}
-  {{/each}}
+  <img src={{post.image_url}} class="post-image"></img>
+  <div class="row">
+    <article class="col-md-9 col-xs-12">
+      {{post.body}}
+    </article>
+    <article class="col-md-3 col-xs-12">
+      <h4>Comments</h4>
+      <div>
+        {{#each post.comments as |comment|}}
+          <div class="card mt-2" style="width: 100%">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">{{comment.user.username}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{comment.createdAt}}</h6>
+              <p class="card-text">{{comment.message}}</p>
+              {{#if comment.belongsToUser}}
+              <div id={{comment.id}}>
+                <button class="btn btn-secondary" id="edit-comment">Edit</button>
+                <button class="btn btn-secondary" id="delete-comment">Delete</button>
+              </div>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </article>
+  </section>
 </main>
 
