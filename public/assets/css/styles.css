@@ -13,3 +13,7 @@ main {
 .login-form-container {
   width: 70vw;
 }
+
+.error-message {
+  color: rgb(194, 11, 47)
+}
