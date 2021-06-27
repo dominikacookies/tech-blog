@@ -13,7 +13,11 @@ const renderHomePage = async (req,res) => {
     ],
   }) 
 
-  const posts = postsData.map((post)=> post.get({ plain:true }));
+  const posts = postsData.map((post)=> {
+    const plainPost = post.get({ plain:true })
+    plainPost.loggedIn =loggedIn
+    return plainPost
+  });
 
   res.render("home", {posts, loggedIn})
 }
