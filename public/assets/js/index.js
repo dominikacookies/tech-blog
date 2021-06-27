@@ -46,6 +46,10 @@ const refreshWindow = () => {
   location.reload()
 }
 
+const saveComment = async () => {
+
+}
+
 const updateComment = async (event) => {
   const parentContainer = $(event.target).parent()
   const commentId = parentContainer.attr("id")
@@ -62,6 +66,14 @@ const updateComment = async (event) => {
     }),
   };
 
+  if (message === "") {
+    $(".error-message").remove()
+    parentContainer.prepend(`
+    <p class="error-message text-center"> Comment cannot be empty. </p>
+    `)
+    return
+  }
+
   const {status} = await fetch(`/api/comment/${commentId}`, options);
 
   if (status === 200 ) {
@@ -73,6 +85,7 @@ const updateComment = async (event) => {
       location.reload;
     }, 1000)
   } else {
+
     parentContainer.append(`
     <p class="error-message text-center"> Sorry, we're unable to update your comment right now. Please try again later </p>
     `)
@@ -135,5 +148,6 @@ const deleteComment = async () => {
 }
 
 $("#login-submit").on("click", submitLoginForm)
+$("#post-comment").on("click", saveComment)
 $('[data-name="edit-comment"]').on("click", renderEditCommentField)
 $('[data-name="delete-comment"]').on("click", deleteComment)
