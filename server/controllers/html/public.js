@@ -19,6 +19,8 @@ const renderHomePage = async (req,res) => {
     return plainPost
   });
 
+  console.log(posts)
+
   res.render("home", {posts, loggedIn})
 }
 
