@@ -13,7 +13,8 @@ const createPost = async (req, res) => {
     const newPost = await Post.create({
       title,
       body: content,
-      image_url: imageUrl
+      image_url: imageUrl,
+      user_id: req.session.user.id
     });
 
     return res.status(200).json({
