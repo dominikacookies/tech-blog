@@ -7,13 +7,13 @@ const dbOptions = {
   logging: false,
 }
 
-const dbName = "tech_blog_db"
-const dbUser = "root";
-const dbPassword = "password";
+// const dbName = "tech_blog_db"
+// const dbUser = "root";
+// const dbPassword = "password";
 
-// const dbName = process.env.DB_NAME;
-// const dbUser = process.env.DB_USER;
-// const dbPassword = process.env.DB_PASSWORD;
+const dbName = process.env.DB_NAME;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
 
 let connection;
 
