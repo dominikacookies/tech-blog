@@ -1,5 +1,72 @@
+const submitSignupForm = async (event) => {
+  event.preventDefault()
+
+  const username = $("#username").val()
+  const firstName = $("#first-name").val()
+  const lastName = $("#last-name").val()
+  const password = $("#password").val()
+  const confirmPassword = $("#confirm-password").val()
+
+  if (username === "" || firstName === "" || lastName === "" || password === "" || confirmPassword === "") {
+    $("#signup-error-messages").empty()
+    $("#signup-error-messages").append(`
+    <p class="error-message"> Sorry mate, we don't half do things around here :D <br>
+    Complete all of the fields to signup.</p> 
+    `)
+  }
+
+  if (password !== confirmPassword) {
+    $("#signup-error-messages").empty()
+    $("#signup-error-messages").append(`
+    <p class="error-message"> Whoops! You might have misspelt your password. <br>
+    Make sure your password and confirm password match.</p> 
+    `)
+  }
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify({
+      username,
+      firstName,
+      lastName,
+      password
+    }),
+  };
+
+  const {status} = await fetch("/auth/signup", options);
+
+  if (status === 200 ) {
+    $(event.target).parent().empty().append(`
+      <p class="text-center"> Congrats, you're in! :) </p>
+    `)
+
+    setTimeout(() => {
+      window.location.replace("/login");
+    }, 1000)
+  } else if (status === 409) {
+    $(".error-message").remove()
+    $(event.target).parent().prepend(`
+    <p class="error-message text-center"> Sorry, this username is already taken! </p>
+    `)
+    return
+  } else {
+    $(".error-message").remove()
+    $(event.target).parent().prepend(`
+    <p class="error-message text-center"> Oops! We're unable to sing you up right now. Please try again later. </p>
+    `)
+    return
+  }
+
+
+} 
+
 const submitLoginForm = async (event) => {
   event.preventDefault()
+
   const username = $("#username").val()
   const password = $("#password").val()
 
@@ -46,7 +113,7 @@ const refreshWindow = () => {
   location.reload()
 }
 
-const saveComment = async (event) => {
+const createNewComment = async (event) => {
   const parentContainer =  $(event.target).parent()
   const message = $("#add-comment-textarea").val()
   const postId = $(event.target).data("postid")
@@ -76,11 +143,13 @@ const saveComment = async (event) => {
   if (status === 200 ) {
     parentContainer.empty()
     parentContainer.append(`
-      <p>Comment created successfully</p>
-    `)
+      <p>Nice one! Your comment has been created.</p>
+    `);
+
     setTimeout(() => {
-      location.reload;
-    }, 1000)
+      location.reload();
+    }, 1000);
+
   } else {
     parentContainer.append(`
     <p class="error-message text-center"> Sorry, we're unable to add your comment right now. Please try again later </p>
@@ -122,8 +191,8 @@ const updateComment = async (event) => {
       <p>Comment updated successfully</p>
     `)
     setTimeout(() => {
-      location.reload;
-    }, 1000)
+      location.reload();
+    }, 1000);
   } else {
 
     parentContainer.append(`
@@ -187,35 +256,46 @@ const deleteComment = async (event) => {
   }
 }
 
-const deletePost = async (event) => {
+const createNewPost = async (event) => {
   const parentContainer = $(event.target).parent()
-  const postId = parentContainer.attr("id")
-
-  console.log(postId)
+  const title = $("#post-title").val()
+  const imageUrl = $("#post-image-url").val()
+  const content = $("#post-content").val()
+  
+  if (title === "" || content === "" || imageUrl === "") {
+    $(".error-message").remove()
+    $(parentContainer).prepend(`
+    <p class="error-message p-2"> Title, content and image url fields cannot be empty </p>
+    `)
+    return
+  }
 
   const options = {
-    method: "DELETE",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     redirect: "follow",
+    body: JSON.stringify({
+      title,
+      imageUrl,
+      content
+    }),
   };
 
-  const response = await fetch(`/api/post/${postId}`, options);
+  const {status} = await fetch(`/api/post`, options);
 
-  if (response.status === 200) {
-    parentContainer.empty();
+  if (status === 200 ) {
+    parentContainer.empty()
     parentContainer.append(`
-    <p> Deleted successfully. </p>
-    `);
-
+      <p>Post created successfully</p>
+    `)
     setTimeout(() => {
-      location.reload();
-    }, 1000);
-
+      window.location.replace("/dashboard")
+    }, 1000)
   } else {
     parentContainer.append(`
-    <p class="error-message text-center"> Sorry, we're unable to delete this post right now. Please try again later. </p>
+    <p class="error-message text-center"> Sorry, we're unable to create your post right now. Please try again later </p>
     `)
     return
   }
@@ -265,7 +345,6 @@ const updatePost = async (event) => {
     };
   }
 
-  console.log(options)
   const {status} = await fetch(`/api/post/${postId}`, options);
 
   if (status === 200 ) {
@@ -282,14 +361,49 @@ const updatePost = async (event) => {
     `)
     return
   }
-
-
 }
 
+const deletePost = async (event) => {
+  const parentContainer = $(event.target).parent()
+  const postId = parentContainer.attr("id")
+
+  console.log(postId)
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch(`/api/post/${postId}`, options);
+
+  if (response.status === 200) {
+    parentContainer.empty();
+    parentContainer.append(`
+    <p> Deleted successfully. </p>
+    `);
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+
+  } else {
+    parentContainer.append(`
+    <p class="error-message text-center"> Sorry, we're unable to delete this post right now. Please try again later. </p>
+    `)
+    return
+  }
+}
+
+$("#signup-submit").on("click", submitSignupForm)
 $("#login-submit").on("click", submitLoginForm)
-$("#post-comment").on("click", saveComment)
+
+$("#post-comment").on("click", createNewComment)
 $('[data-name="edit-comment"]').on("click", renderEditCommentField)
 $('[data-name="delete-comment"]').on("click", deleteComment)
 
+$("#publish-post").on("click", createNewPost)
 $("#update-post").on("click", updatePost)
 $('[data-name="delete-post"]').on("click", deletePost)
