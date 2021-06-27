@@ -14,7 +14,16 @@ const renderDashboard = async (req, res) => {
   res.render("dashboard", {firstName, userPosts})
 }
 
-const renderEditPostPage = (req, res) => {
+const renderEditPostPage = async (req, res) => {
+  const post = await Post.findOne({
+    where: {
+      id: req.params.id
+    },
+    raw: true,
+    nested: true
+  })
+
+  res.render("edit-post", {post})
   console.log("Edit post")
 }
 
@@ -40,8 +49,23 @@ const renderPostPage = async (req, res) => {
     ],
   })
 
-  const post = postData.get({plain:true})
+  const post = postData.get({ plain: true })
+  
+  const promises = post.comments.map(
+    async (comment) => {
+      if (comment.user_id === req.session.user.id ) {
+        comment.belongsToUser = true
+      }
+      return comment
+    }
+  )
+
+  const postComments = await Promise.all(promises)
+
+  post.comments = postComments 
+
   console.log(post)
+  res.render("post", {post})
 }
 
 const updatePost = async (req, res) => {
