@@ -1,5 +1,3 @@
-console.log("hello to client")
-
 const submitLoginForm = async (event) => {
   event.preventDefault()
   const username = $("#username").val()
