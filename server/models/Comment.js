@@ -27,6 +27,7 @@ const schema = {
       model: "user",
       key: "id"
     },
+    allowNull: false
   },
   post_id: {
     type: DataTypes.INTEGER,
@@ -34,6 +35,7 @@ const schema = {
       model: "post",
       key: "id"
     },
+    allowNull: false
   }
 };
 
