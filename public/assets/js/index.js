@@ -221,8 +221,75 @@ const deletePost = async (event) => {
   }
 }
 
+const updatePost = async (event) => {
+  const parentContainer = $(event.target).parent()
+  const title = $("#post-title").val()
+  const imageUrl = $("#post-image-url").val()
+  const content = $("#post-content").val()
+  const postId = $(event.target).data("postid")
+  
+  if (title === "" || content === "") {
+    $(".error-message").remove()
+    $(parentContainer).prepend(`
+    <p class="error-message p-2"> Title and content fields cannot be empty </p>
+    `)
+    return
+  }
+
+  let options
+
+  if(imageUrl === "") {
+    options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      body: JSON.stringify({
+        title,
+        content,
+      }),
+    };
+  } else {
+    options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      body: JSON.stringify({
+        title,
+        content,
+        imageUrl
+      }),
+    };
+  }
+
+  console.log(options)
+  const {status} = await fetch(`/api/post/${postId}`, options);
+
+  if (status === 200 ) {
+    parentContainer.empty()
+    parentContainer.append(`
+      <p>Post updated successfully</p>
+    `)
+    setTimeout(() => {
+      window.location.replace("/dashboard")
+    }, 1000)
+  } else {
+    parentContainer.append(`
+    <p class="error-message text-center"> Sorry, we're unable to update your post right now. Please try again later </p>
+    `)
+    return
+  }
+
+
+}
+
 $("#login-submit").on("click", submitLoginForm)
 $("#post-comment").on("click", saveComment)
 $('[data-name="edit-comment"]').on("click", renderEditCommentField)
 $('[data-name="delete-comment"]').on("click", deleteComment)
+
+$("#update-post").on("click", updatePost)
 $('[data-name="delete-post"]').on("click", deletePost)
