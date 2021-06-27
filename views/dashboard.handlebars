@@ -1,8 +1,11 @@
 
 {{> private-nav}}
-<h1>DASHBOARD</h1>
-<h2>Hello {{ firstName }} </h2>
-<div class="d-flex flex-wrap justify-content-around">
+<main>
+  <div class="text-center p-5">
+    <h1>DASHBOARD</h1>
+    <h2>Hello {{ firstName }} </h2>
+  </div>
+  <div class="d-flex flex-wrap justify-content-around">
     {{#each userPosts as |post| }}
       <div class="card text-center p-2 card-elements" style="width: 20rem">
         <div class="card-body mx-auto">
@@ -11,9 +14,10 @@
           <p> Published: {{ post.createdAt }}</p>
         </div>
         <div id={{post.id}}>
-          <a href='/post/{{id}}' class="btn btn-primary">Edit</a>
+          <a href='/dashboard/post/{{id}}' class="btn btn-primary">Edit</a>
           <button class="btn btn-secondary" data-name="delete-post"> Delete </button>
         </div>
       </div>
     {{/each }}
-</div>
+  </div>
+</main>
