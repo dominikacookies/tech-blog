@@ -96,6 +96,7 @@ const deletePost = async (req, res) => {
       message: "The post has been successfully deleted",
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({
       error: "Cannot delete post at this time."
     })
