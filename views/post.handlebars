@@ -1,0 +1,21 @@
+<main>
+  <h1>{{post.title}}</h1>
+  <p>By: {{post.user.username}} published: {{post.createdAt}} </p>
+  <img src={{post.image_url}}></img>
+  <div>{{post.body}}</div>
+  <h3>Comments</h3>
+  {{#each post.comments as |comment|}}
+    {{#if comment.belongsToUser}}
+    <div> {{comment.user.username}} </div>
+    <div> {{comment.createdAt}} </div>
+    <div> {{comment.message}} </div>
+    <div> "edit" </div>
+    <div> "delete" </div>
+    {{else}}
+      <div> {{comment.user.username}} </div>
+      <div> {{comment.createdAt}} </div>
+      <div> {{comment.message}} </div>
+    {{/if}}
+  {{/each}}
+</main>
+
