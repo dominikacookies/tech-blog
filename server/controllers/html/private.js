@@ -38,7 +38,7 @@ const renderPostPage = async (req, res) => {
         include: [
           {
             model: User,
-            attributes: ["username"]
+            attributes: ["username"],
           }
         ]
       },
@@ -62,7 +62,7 @@ const renderPostPage = async (req, res) => {
 
   const postComments = await Promise.all(promises)
 
-  post.comments = postComments 
+  post.comments = postComments.reverse()
 
   console.log(post)
   res.render("post", {post})
