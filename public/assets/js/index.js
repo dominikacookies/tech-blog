@@ -46,7 +46,47 @@ const refreshWindow = () => {
   location.reload()
 }
 
-const saveComment = async () => {
+const saveComment = async (event) => {
+  const parentContainer =  $(event.target).parent()
+  const message = $("#add-comment-textarea").val()
+  const postId = $(event.target).data("postid")
+
+  if (message === "") {
+    $(".error-message").remove()
+    $(parentContainer).prepend(`
+    <p class="error-message text-center"> Comment cannot be empty. </p>
+    `)
+    return
+  }
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify({
+      message,
+      postId
+    }),
+  };
+
+  const {status} = await fetch(`/api/comment/`, options);
+
+  if (status === 200 ) {
+    parentContainer.empty()
+    parentContainer.append(`
+      <p>Comment created successfully</p>
+    `)
+    setTimeout(() => {
+      location.reload;
+    }, 1000)
+  } else {
+    parentContainer.append(`
+    <p class="error-message text-center"> Sorry, we're unable to add your comment right now. Please try again later </p>
+    `)
+    return
+  }
 
 }
 
@@ -54,6 +94,14 @@ const updateComment = async (event) => {
   const parentContainer = $(event.target).parent()
   const commentId = parentContainer.attr("id")
   const message = parentContainer.children(".form-floating").children("#updatedComment").val()
+
+  if (message === "") {
+    $(".error-message").remove()
+    parentContainer.prepend(`
+    <p class="error-message text-center"> Comment cannot be empty. </p>
+    `)
+    return
+  }
 
   const options = {
     method: "PUT",
@@ -65,14 +113,6 @@ const updateComment = async (event) => {
       message
     }),
   };
-
-  if (message === "") {
-    $(".error-message").remove()
-    parentContainer.prepend(`
-    <p class="error-message text-center"> Comment cannot be empty. </p>
-    `)
-    return
-  }
 
   const {status} = await fetch(`/api/comment/${commentId}`, options);
 
@@ -116,7 +156,7 @@ const renderEditCommentField = (event) => {
 
 }
 
-const deleteComment = async () => {
+const deleteComment = async (event) => {
   const parentContainer = $(event.target).parent()
   const commentId = parentContainer.attr("id")
 
@@ -147,7 +187,42 @@ const deleteComment = async () => {
   }
 }
 
+const deletePost = async (event) => {
+  const parentContainer = $(event.target).parent()
+  const postId = parentContainer.attr("id")
+
+  console.log(postId)
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch(`/api/post/${postId}`, options);
+
+  if (response.status === 200) {
+    parentContainer.empty();
+    parentContainer.append(`
+    <p> Deleted successfully. </p>
+    `);
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+
+  } else {
+    parentContainer.append(`
+    <p class="error-message text-center"> Sorry, we're unable to delete this post right now. Please try again later. </p>
+    `)
+    return
+  }
+}
+
 $("#login-submit").on("click", submitLoginForm)
 $("#post-comment").on("click", saveComment)
 $('[data-name="edit-comment"]').on("click", renderEditCommentField)
 $('[data-name="delete-comment"]').on("click", deleteComment)
+$('[data-name="delete-post"]').on("click", deletePost)
