@@ -88,12 +88,9 @@ const login = async (req, res) => {
 
 
 const logout = async (req, res) => {
-  delete req.session.loggedIn
-  delete req.session.user
+  await req.session.destroy();
   
-  res.status(200).json({
-    message: "Logout successful"
-  })
+  res.redirect("/")
 }
 
 module.exports = {
