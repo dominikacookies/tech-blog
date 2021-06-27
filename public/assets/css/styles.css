@@ -68,3 +68,16 @@ main {
   width: 100%;
   height: 150px
 }
+
+/* post page */
+#post-title {
+  height: 13vh
+}
+
+#post-image-url {
+  width: 100%
+}
+
+#post-content {
+  height: 50vh
+}
