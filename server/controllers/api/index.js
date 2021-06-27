@@ -138,8 +138,10 @@ const createComment = async (req, res) => {
 const updateComment = async (req, res) => {
   try {
 
-    const {id} = req.params
+    const { id } = req.params
     const {message} = req.body
+
+    console.log(message, id)
 
     if (!message) {
       return res.status(404).json({

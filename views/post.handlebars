@@ -18,11 +18,11 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">{{comment.user.username}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{comment.createdAt}}</h6>
-              <p class="card-text">{{comment.message}}</p>
+              <p class="card-text comment" id="comment">{{comment.message}}</p>
               {{#if comment.belongsToUser}}
               <div id={{comment.id}}>
-                <button class="btn btn-secondary" id="edit-comment">Edit</button>
-                <button class="btn btn-secondary" id="delete-comment">Delete</button>
+                <button class="btn btn-secondary" data-name="edit-comment">Edit</button>
+                <button class="btn btn-secondary" data-name="delete-comment">Delete</button>
               </div>
               {{/if}}
             </div>
