@@ -2,27 +2,29 @@
 {{> private-nav}}
 
 <main class="mb-30">
-  <div class="text-center p-5">
-    <h1>Create a new post </h1>
-  </div>
-  <div class="form-floating m-2">
-    <textarea class="form-control border" id="post-title"></textarea>
-    <label for="post-title">Title</label>
-  </div>
-  <div class="p-2">
-    <input placeholder="Link to post image" id="post-image-url" class="border"> </input>
-    <p class="grey-text">Need some inspo? Take a look at <a href="https://unsplash.com/" target="_blank" class="grey-text"> unsplash. </a></p>
-  </div>
-  <div class="form-floating m-2">
-    <textarea class="form-control border" id="post-content"></textarea>
-    <label for="post-content">Content</label>
-  </div>
-  <div class="p-2">
-    <button id="publish-post" class="btn btn-primary">
-      Publish
-    </button>
-    <a class="btn btn-secondary" href="/dashboard">
-      Cancel
-    </a>
-  </div>
+  <section class="pb-20">
+    <div class="text-center p-5">
+      <h1>Create a new post </h1>
+    </div>
+    <div class="form-floating m-2">
+      <textarea class="form-control border" id="post-title"></textarea>
+      <label for="post-title">Title</label>
+    </div>
+    <div class="p-2">
+      <input placeholder="Link to post image" id="post-image-url" class="border"> </input>
+      <p class="grey-text">Need some inspo? Take a look at <a href="https://unsplash.com/" target="_blank" class="grey-text"> unsplash. </a></p>
+    </div>
+    <div class="form-floating m-2">
+      <textarea class="form-control border" id="post-content"></textarea>
+      <label for="post-content">Content</label>
+    </div>
+    <div class="p-2">
+      <button id="publish-post" class="btn btn-primary">
+        Publish
+      </button>
+      <a class="btn btn-secondary" href="/dashboard">
+        Cancel
+      </a>
+    </div>
+  </section>
 </main>

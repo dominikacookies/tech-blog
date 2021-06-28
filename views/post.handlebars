@@ -2,12 +2,12 @@
 {{> private-nav}}
 
 <main class="centre-content">
-  <section>
+  <section class="pb-20">
   <h1>{{post.title}}</h1>
   <p>By: {{post.user.username}} published: {{formatDate post.createdAt}} </p>
   <img src={{post.image_url}} class="post-image"></img>
   <div class="row">
-    <article class="col-md-9 col-xs-12">
+    <article class="col-md-9 col-xs-12 pt-5">
       {{post.body}}
     </article>
     <article class="col-md-3 col-xs-12">
