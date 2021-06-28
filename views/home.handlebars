@@ -13,7 +13,7 @@
         <div class="card-body mx-auto">
           <img src={{post.image_url}} class="card-img-top" alt={{post.title}} />
           <h5 class="card-title text-center pt-4">{{post.title}}</h5>
-          <p> Published: {{ post.createdAt }} by {{post.user.username}}</p>
+          <p> Published: {{formatDate post.createdAt }} by {{post.user.username}}</p>
         </div>
         <div class="d-flex flex-wrap justify-content-around">
           {{#if post.loggedIn}}

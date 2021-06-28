@@ -4,7 +4,7 @@
 <main class="centre-content">
   <section>
   <h1>{{post.title}}</h1>
-  <p>By: {{post.user.username}} published: {{post.createdAt}} </p>
+  <p>By: {{post.user.username}} published: {{formatDate post.createdAt}} </p>
   <img src={{post.image_url}} class="post-image"></img>
   <div class="row">
     <article class="col-md-9 col-xs-12">
@@ -24,7 +24,7 @@
           <div class="card mt-2 card-elements" style="width: 100%">
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">{{comment.user.username}}</h6>
-              <h6 class="card-subtitle mb-2 text-muted">{{comment.createdAt}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{formatDate comment.createdAt}}</h6>
               <p class="card-text comment" id="comment">{{comment.message}}</p>
               {{#if comment.belongsToUser}}
               <div id={{comment.id}}>

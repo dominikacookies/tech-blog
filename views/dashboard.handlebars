@@ -14,7 +14,7 @@
         <div class="card-body mx-auto">
           <img src={{post.image_url}} class="card-img-top" alt={{post.title}} />
           <h5 class="card-title text-center pt-4">{{post.title}}</h5>
-          <p> Published: {{ post.createdAt }}</p>
+          <p> Published: {{formatDate post.createdAt }}</p>
         </div>
         <div id={{post.id}}>
           <a href='/dashboard/post/{{id}}' class="btn btn-primary">Edit</a>
