@@ -7,6 +7,9 @@
   - [Screenshots](#screenshots)
   - [Installation](#installation)
 
+## Deployed Application
+https://fathomless-plains-35453.herokuapp.com/
+
 ## Description
 This application is a blogging platform which allows users to create, edit and delete blog posts as well as leave comments on them.
 
